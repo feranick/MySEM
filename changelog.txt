@@ -1,0 +1,48 @@
+v.4.1 (06/16/2013)
+
+For custom microscope calibrations, the calibration for a given magnification and scale bar is shown in real time in ImageJ status bar.
+
+------------------------------ 
+
+v.4.0 (06/14/2013)
+
+Added support for FEI XL30
+Restructured custom microscope, to consider also image size and scale bar.
+Cropping and selection now works also on FEI XL30
+Measure uses only 1 decimal figure for nm scales.
+
+------------------------------ 
+
+v.3.0 (06/13/2013)
+
+Complete recompilation
+Added support for FEI Helios
+Rewritten interface for custom microscope
+
+------------------------------ 
+
+v.2.1 (09/02/2010)
+
+Fixed minor bug in installer.
+
+------------------------------ 
+
+v.2.0 (08/15/2010)
+
+MySEM plugins now offer support for the Agilent 8500 FE-SEM (rebranded version of NovelX MySEM)
+
+------------------------------ 
+
+v.1.10 (02/12/2010) 
+
+Extended auto select image to all filters (to preserve info strip).
+
+------------------------------
+v.1.9 (01/25/2010) 
+
+Added "Select Image" buttons and menu entries: It allows the selection of the region of interest within the image, without the NovelX info bar. Useful for image filtering without manual selection of the region of interest.
+
+------------------------------
+v. 1.8 (12/08/2009)
+
+New server for the plugins: http://electronsoftware.altervista.org.

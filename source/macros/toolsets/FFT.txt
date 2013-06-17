@@ -1,0 +1,76 @@
+// MySEM Tools
+// 
+//  This is a set of tools similar to the pencil, paintbrush and 
+//  eraser tools in NIH Image. The pencil and paintbrush draw
+//  in the current foreground color and the eraser draws in the
+//  current background color. The foreground and background
+//  colors can be set by double-clicking on the eye dropper tool. 
+//  Double-click on a tool icon to set the drawing width.
+
+
+  macro "Unused Tool-1 - " {}  // leave slot between text tool and magnifying glass unused
+
+
+ //Toolset
+
+macro "Roi Manager Action Tool-C037T0b11RT8b09oTcb09i " {
+	run("ROI Manager...");
+	}
+
+var fCmds = newMenu("Image Filters Menu Tool", newArray("Brightness/Contrast","Window/Level","Smooth","Sharpen","Enhance Contrast","Unsharp Mask","Multi-Filters"));
+
+macro "Image Filters Menu Tool - C037D04D05D06D07D08D09D0aD0bD0cD14D18D1cD24D28D2cD34D38D3cD45D46D47D49D4aD4bD6bD6cD76D77D78D79D7aD84D85Da6Da7Da8Da9DaaDb5DbbDc4DccDd4DdcDe5DebDf6Dfa" {
+      cmd = getArgument();
+      if (cmd=="Brightness/Contrast")
+           run("Brightness/Contrast...");
+      else if (cmd=="Smooth")
+	   run("Smooth");
+      else if (cmd=="Sharpen")
+	   run("Sharpen");
+      else if (cmd=="Enhance Contrast")
+	   run("Enhance Contrast");
+      else if (cmd=="Unsharp Mask")
+	   run("Unsharp Mask...");
+      else if (cmd=="Window/Level")
+	   run("Window/Level...");
+      else if (cmd=="Multi-Filters")
+	   run("MySEM Filters");
+      else if (cmd!="-")
+            run(cmd);
+	}
+
+macro "Unused Tool-1 - " {}  // leave slot between text tool and magnifying glass unused
+
+macro "Fast Fourier Transform (FFT) Action Tool-C037T0b11FT8b09T" {
+	run("FFT");
+	}
+
+macro "Inverse Fast Fourier Transform (FFT) Action Tool-C037T0b11iT8b09FTcb09T " {
+	run("Inverse FFT");
+	}
+
+macro "FFT high frequency noise filter Action Tool-C037T0b11fT8b09FTcb09T" {
+
+	FFThighfreqnoisecanc();
+	}
+
+macro "FFT high frequency noise filter [F5]" {
+
+	FFThighfreqnoisecanc();
+	}
+
+function FFThighfreqnoisecanc() {
+
+	run("Copy");
+	run("Select All");
+	run("Clear");
+	//setTool(19);
+	run("Select All");
+	setForegroundColor(0, 0, 0);
+	floodFill(0, 0);
+	run("Paste");
+	run("Select All");
+	run("Inverse FFT");
+	}
+
+

@@ -1,0 +1,289 @@
+// MySEM Tools
+// 
+//  This is a set of tools similar to the pencil, paintbrush and 
+//  eraser tools in NIH Image. The pencil and paintbrush draw
+//  in the current foreground color and the eraser draws in the
+//  current background color. The foreground and background
+//  colors can be set by double-clicking on the eye dropper tool. 
+//  Double-click on a tool icon to set the drawing width.
+
+
+  var pencilWidth=1, brushWidth=10, eraserWidth=15, leftClick=16, alt=8;
+  var lineWidth = 2;
+  var sprayCanWidth=75, sprayCanDotSize=1, sprayCanRate=6;
+
+  macro "Unused Tool-1 - " {}  // leave slot between text tool and magnifying glass unused
+
+
+  //Toolset
+
+macro "Display commands on image Action Tool-CfffD00D01D02D03D04D05D06D07D08D09D0aD0bD0cD0dD0eD0fD10D11D12D13D14D15D16D17D18D19D1aD1bD1cD1dD1eD1fD20D21D22D23D24D25D26D27D28D29D2aD2bD2cD2dD2eD30D31D32D33D34D35D36D37D38D39D3aD3bD3cD3dD40D41D42D43D44D45D46D4bD4cD4dD50D51D52D53D54D55D5cD5dD60D61D62D63D64D67D68D69D70D71D72D73D77D78D79D89D8cD8dD99D9cDa0Da1Da2Da3Da4Da5Da6Da7Da8Da9DacDb0Db1Db2Db3Db4Db5Db6Db7Db8Db9DbcDbdDc0Dc1Dc2Dc3Dc4Dc5Dc6Dc7Dc8Dc9DcbDccDcdDceDd0Dd1Dd2Dd3Dd4Dd5Dd6Dd7Dd8Dd9DdaDdbDdcDddDdeDdfDe0De1De2De3De4De5De6De7De8De9DeaDebDecDedDeeDefDf0Df1Df2Df3Df4Df5Df6Df7Df8Df9DfaDfbDfcDfdDfeDffC38fD2fD3eD3fD48D49D4aD4eD4fD56D57D58D59D5aD5bD5eD5fD66D6aD6bD6cD6dD6fD75D76D7aD7bD7cD7dD7fD80D81D82D83D84D85D86D87D88D8fD90D98D9fC25fD74C24fD6eD7eD8eD91D92D96D9aD9eDaaDaeC37fD47D65D8aD8bD93D94D95D97D9bD9dDabDadDafDbbDbfC32fDbaDbeDca " {run("MySEM MainFrame");	}
+
+var fCmds = newMenu("Image Filters Menu Tool", newArray("Brightness/Contrast","Window/Level","Regions of Interest","Select Image","Smooth","Sharpen","Enhance Contrast","Unsharp Mask","Remove Streaks","Correct Lines","Median Filter","Multi-Filters"));
+	
+macro "Image Filters Menu Tool - C000D89D8dD96D9dDa5Da6Db3Db4Db5Db6DbdC06fD12D13D14D15D16D17D18D19D1aD1bD1cD1dD1eC0f3D32D33D34D35D36D37D38D39D3aD3bD3cD3dD3eD3fCeeeD80C444DbeDcfC73fD01Cfd0D42D43D44D45D46D47D48D49D4aD4bD4cD4dD4eCfffD7cD7fD8fD91D98Dc1DceDd1Dd3DdeDdfDe0De1De2De3De4De5De6De7De8De9DeaDebDecDedDeeDefDf0Df1Df2Df3Df4Df5Df6Df7Df8Df9DfaDfbDfcDfdDfeDffC222C0feD22D23D24D25D26D27D28D29D2aD2bD2cD2dD2eC888D88CfffD71D90DcbDd0Dd2Dd4Dd5Dd6DdcCf74D50CcccD9fCbbbD97Da0Dc2C000Da4Db2C06fD11D1fC0f4D31CeeeD70D75D81D84D92D93Dc0Dc8Dd7DdaDdbCf40D51D52D53D54D55D56D57D58D59D5aD5bD5cD5dD5eD5fCa7fD00Cfd0D41D4fC444D95DbaDc9C0ffD21D2fC4f6D30CfffD7bCf88D62D63D64D65D6bD6cCeeeD72D73D74DabDbbDccDd8Cf89D6dC666Da7C84fD02D03D04D05D06D07D08D09D0aD0bD0cD0dD0eC333D86D87D8aD99D9cDb9DbcCaaaD8eDa1Dc3Dc4Dc5Dc6CeddD76Cf89D61D66D6aD6eD6fC222DadDcdC48fD10Cfd4D40C4ffD20CaaaDacDcaDddCfaaD60C555Da2C73fD0fC333D9bDa3Da9Db1C999D7dCdddD7aD83Da8Dc7CbbbDb8C111D9aDb7CaaaD8bCf99D67D68D69C777D8cDaaCdeeD82D85C999DafCdddDd9C766D79C555DaeC999D78CcccD7eD94C888D9eC777DbfC666Db0Ca99D77" {
+      cmd = getArgument();
+      if (cmd=="Brightness/Contrast")
+           run("Brightness/Contrast...");
+      else if (cmd=="Regions of Interest")
+	   run("ROI Manager...");
+      else if (cmd=="Select Image")
+	   run("MySEM Select Image");	
+      else if (cmd=="Smooth")
+	   run("Smooth");
+      else if (cmd=="Sharpen")
+	   run("Sharpen");
+      else if (cmd=="Enhance Contrast")
+	   run("Enhance Contrast");
+      else if (cmd=="Unsharp Mask")
+	   run("Unsharp Mask...");
+      else if (cmd=="Window/Level")
+	   run("Window/Level...");
+      else if (cmd=="Remove Streaks")
+	    run("Remove Streaks");
+      else if (cmd=="Correct Lines")
+	    run("MySEM Line Correction");
+      else if (cmd=="Median Filter")
+	    run("Median...");
+      else if (cmd=="Multi-Filters")
+	   run("MySEM Filters");
+      else if (cmd!="-")
+            run(cmd);
+	}
+
+macro "Set Scale and Calibrate Image [F2] Action Tool- CbooP51b1f5fbbf5f1b15510T5c10C " {
+         run("MySEM Set Scale");
+   }
+
+macro "Profile Menu Tool - C037R12ccL85acL5c85L355c" {
+	   run("Plot Profile");
+	}
+
+macro "Measure [F3] Action Tool- C037T0b11MT8b09eTcb09s" {
+        run("MySEM Measure");
+ }
+
+macro "Statistics Action Tool- C037T0b11ST8b09tTcb09a" {
+        run("Measure");
+   }
+
+var sCmds = newMenu("Format Menu Tool", newArray("Crop Image","Select Image", "Add Scale Bar"));
+  macro "Format Menu Tool - C037R12ccL1ada" {
+      cmd = getArgument();
+      if (cmd=="Crop Image")
+           run("MySEM Crop");
+      else if (cmd=="Select Image")
+	   run("MySEM Select Image");
+      else if (cmd=="Add Scale Bar")
+	   run("Scale Bar...");
+      else if (cmd!="-")
+            run(cmd);
+	}
+ 
+
+//Macros
+
+macro "Adjust Contrast/Brightness (Shift+Ctrl+C)" {
+	run("Brightness/Contrast...");
+	}
+
+macro "MySEM: Display commands on image [F1]" {
+         run("MySEM MainFrame");
+   }
+
+macro "MySEM: Set Scale and Calibrate [F2]" {
+         run("MySEM Set Scale");
+   }
+
+macro "MySEM: Measure [F3]" {
+        run("MySEM Measure");
+ }
+
+macro "MySEM: Image Multi-Filters [F4]" {
+        run("MySEM Filters");
+ }
+
+macro "MySEM: Crop" {
+        run("MySEM Crop");
+  }
+
+macro "MySEM: Select Image" {
+        run("MySEM Select Image");
+  }
+
+
+macro "MySEM: Statistics" {
+        run("Measure");
+   }
+
+
+macro "Add Scale Bar [F7]" {
+	run("Set Scale...");
+	run("Scale Bar...");}
+
+
+
+macro "-" {} //menu divider
+
+
+macro "Batch Convert Images  [F8]" {convertIMG();}
+
+function convertIMG() {
+               requires("1.33s");
+
+               dir1 = getDirectory("Choose Source Directory ");
+               Dialog.create("Convert sequence of images");
+	       Dialog.addChoice("Outfile format: ", newArray("png", "jpg", "8-bit tiff","16-bit tiff", "gif", "bmp"));
+               Dialog.addCheckbox(" Convert all ", true);
+               Dialog.addString("OR Number of frames to convert?", "", 20);
+               Dialog.addCheckbox(" Smooth ", false);
+	       Dialog.addCheckbox(" Enhance contrast ", false);
+               Dialog.addString("Value", "0.5", 5);
+               Dialog.addCheckbox(" Normalize", false);
+               Dialog.addCheckbox(" Save in the same folder ", true);
+               Dialog.addCheckbox(" Log? ", false);
+               Dialog.show();
+		
+		outformat=Dialog.getChoice();
+               cvall=Dialog.getCheckbox();
+               num=Dialog.getString();
+               smooth=Dialog.getCheckbox();
+	       enhcont=Dialog.getCheckbox();
+               enhvalue=Dialog.getString();
+               norm=Dialog.getCheckbox();
+               dirtype = Dialog.getCheckbox();
+               Log = Dialog.getCheckbox();
+
+                       if(dirtype==true)
+                               dir2 = dir1;
+                       else
+                               dir2 = getDirectory("Choose Destination Directory ");
+
+		if(startsWith(outformat, "jpg"))
+			{quality = call("ij.plugin.JpegWriter.getQuality");
+    			 quality = getNumber("JPEG quality (0-100):", quality);
+    			 run("Input/Output...", "jpeg="+quality);
+			}
+
+               list = getFileList(dir1);
+               if(list.length<num || (cvall==true && num==""))
+                       {length=list.length;}
+               else
+                       {length=num;}
+               setBatchMode(true);
+               for (i=0; i<length; i++) {
+                       showProgress(i+1, length);
+
+                       open(dir1+list[i]);
+                       if (!endsWith(list[i], '.jpg') && !endsWith(list[i], '.tif') && !endsWith(list[i], '.bmp') && !endsWith(list[i], '.png') && !endsWith(list[i], '.JPG') && !endsWith(list[i], '.TIF') && !endsWith(list[i], '.BMP') && !endsWith(list[i], '.PNG') && !endsWith(list[i], '.dm3') && !endsWith(list[i], '.DM3'))
+                               {if(Log==true)
+                                       {print(list[i]+"   skipped, not jpg, tiff, bmp, png");}}
+
+                       else {  
+				if(smooth==true)
+                                       {run("Smooth");}                               
+				if(enhcont==true)
+                                       {if(norm==true)
+                                               run("Enhance Contrast", "saturated="+enhvalue+" normalize");
+                                       else
+                                               run("Enhance Contrast", "saturated="+enhvalue);}
+                               if(Log==true)
+                                       {print(list[i]+"    converted into:  "+outformat);}
+                               }
+                       saveAs(outformat, dir2+list[i]);
+                       close();
+
+               }
+
+
+function convertTo8Bit() {
+     if (bitDepth==24)
+         {run("8-bit Color", "number=256");}
+     else
+         {run("8-bit");}
+ }
+
+
+macro "Batch Rescale images for Web  [F9]" {rescaleweb();}
+
+
+function rescaleweb() {
+               requires("1.33s");
+
+
+               dir1 = getDirectory("Choose Source Directory ");
+               Dialog.create("Rescale images for web ");
+               Dialog.addCheckbox(" Rescale all ", true);
+               Dialog.addString("OR Number of frames to rescale?", "", 20);
+               Dialog.addString("Save as ", "jpg",5)
+	       Dialog.addCheckbox(" Smooth ", false);
+               Dialog.addCheckbox(" Enhance contrast ", false);
+               Dialog.addString("Value contrast", "0.5", 5);
+               Dialog.addString("Size long side (pixels)", "800", 5);
+               Dialog.addCheckbox(" Interpolate ", false);
+               Dialog.addCheckbox(" Save in the same folder ", false);
+               Dialog.addCheckbox(" Log? ", true);
+               Dialog.show();
+
+               cvall=Dialog.getCheckbox();
+               num=Dialog.getString();
+               outformat=Dialog.getString();
+               smooth=Dialog.getCheckbox();
+               enhcont=Dialog.getCheckbox();
+               enhvalue=Dialog.getString();
+               scale=Dialog.getString();
+               interpol=Dialog.getCheckbox();
+               dirtype = Dialog.getCheckbox();
+               Log = Dialog.getCheckbox();
+
+               if(dirtype==true)
+                       dir2 = dir1;
+               else
+                       dir2 = getDirectory("Choose Destination Directory ");
+
+               list = getFileList(dir1);
+               if(list.length<num || (cvall==true && num==""))
+                       {length=list.length;}
+               else
+                       {length=num;}
+
+               setBatchMode(true);
+               for (i=0; i<length; i++)
+                       {showProgress(i+1, length);
+
+                       open(dir1+list[i]);
+                       if (!endsWith(list[i], '.jpg') && !endsWith(list[i], '.tif') && !endsWith(list[i], '.bmp') && !endsWith(list[i], '.png') && !endsWith(list[i], '.JPG') && !endsWith(list[i], '.TIF') && !endsWith(list[i], '.BMP') && !endsWith(list[i], '.PNG') && !endsWith(list[i], '.dm3') && !endsWith(list[i], '.DM3'))
+                               {if(Log==true)
+                                       {print(list[i]+"   skipped, not jpg, tiff, bmp, png");}}
+
+                       else {  if(smooth==true)
+                                       {run("Smooth");}
+				if(enhcont==true)
+                                       {run("Enhance Contrast", "saturated="+enhvalue);}
+                               a = getHeight();
+                               b = getWidth();
+                               if (a>b)
+                                       {b1=b*scale/a;
+                                       a1=scale;}
+                               else
+                                       {a1=a*scale/b;
+                                       b1=scale;}
+
+                               if(interpol==true)
+                                               {run("Size...", "width="+b1 + " height="+a1 + " interpolate");}
+                                       else
+                                               {run("Size...", "width="+b1 + " height="+a1);}
+
+
+                       saveAs(outformat, dir2+list[i]);
+                       if(Log==true)
+                               {print(list[i]+" : ("+a+"x"+b+")  -> ("+a1+"x"+b1+")");
+                               print("           Saved in ."+outformat+"\n");}
+                       }
+                       close();
+
+
+               }
+
+
+macro "Open All Images as Stack  [F10]" {run("Image Sequence...", "sort use");}
