@@ -1,3 +1,9 @@
+v.4.x (xx/xx/2013)
+
+Added complete names of microscopes currently supported.
+
+------------------------------ 
+
 v.4.1 (06/16/2013)
 
 For custom microscope calibrations, the calibration for a given magnification and scale bar is shown in real time in ImageJ status bar.

@@ -53,7 +53,7 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 
     
     // units for the spacial calibrations given in xscales array above
-	private static String[] microscope =  {"FEI XL30","FEI Helios", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Custom"};
+	private static String[] microscope =  {"FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Custom"};
 	private static String[] units =  {"nm", "um", "mm"};
 	private static String Units = "";
 
