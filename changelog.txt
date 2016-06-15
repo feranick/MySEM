@@ -1,5 +1,6 @@
-v.4.x (xx/xx/2013)
+v.4.1 (06/15/2016)
 
+Source code cleanup.
 Added complete names of microscopes currently supported.
 
 ------------------------------ 
