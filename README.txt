@@ -1,4 +1,4 @@
-MySEM plugins for ImageJ - v. 4.1 - 06/15/2016
+MySEM plugins for ImageJ - v. 4.2 - 03/08/2017
 ----------------------------------------------------
 
 Installation:
