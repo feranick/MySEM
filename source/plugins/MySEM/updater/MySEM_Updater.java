@@ -216,7 +216,7 @@ public class MySEM_Updater implements PlugIn {
 		}
 	
 	String getUpgradeVersion() {
-		String url = "https://github.com/feranick/MySEM/tree/master/source/version.txt";
+		String url = "https://raw.githubusercontent.com/feranick/MySEM/master/source/version.txt";
 		String notes = openUrlAsString(url, 20);
 		if (notes==null) {
 			error("Unable to retrieve updated files.\n Check your Internet connection.");
