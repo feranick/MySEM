@@ -18,8 +18,8 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean Cancel = false; // if true, it will stop the upgrade
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
-	public String currentVersion = "4.1";
-	public String url="http://electronsoftware.altervista.org/mysem/";		
+	public String currentVersion = "4.2";
+	public String url="https://github.com/feranick/MySEM/tree/master/source";
 
 	public void run(String arg) {	
 		Cancel = false;
@@ -216,7 +216,7 @@ public class MySEM_Updater implements PlugIn {
 		}
 	
 	String getUpgradeVersion() {
-		String url = "http://electronsoftware.altervista.org/mysem/version.txt";
+		String url = "https://github.com/feranick/MySEM/tree/master/source/version.txt";
 		String notes = openUrlAsString(url, 20);
 		if (notes==null) {
 			error("Unable to retrieve updated files.\n Check your Internet connection.");
