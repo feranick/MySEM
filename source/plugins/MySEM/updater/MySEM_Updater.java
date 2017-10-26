@@ -18,8 +18,8 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean Cancel = false; // if true, it will stop the upgrade
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
-	public String currentVersion = "4.2";
-	public String url="https://github.com/feranick/MySEM/tree/master/source";
+	public String currentVersion = "4.3";
+	public String url="http://github.com/feranick/MySEM/tree/master/source/";
 
 	public void run(String arg) {	
 		Cancel = false;
@@ -188,7 +188,7 @@ public class MySEM_Updater implements PlugIn {
 	int showDialogUninst() {
 		GenericDialog gdU = new GenericDialog("Uninstall MySEM Plugins");
 		
-			String msg = "Are you sure you want to install all MySEM plugins?\n";
+			String msg = "Are you sure you want to uninstall all MySEM plugins?\n";
 			gdU.addMessage(msg);
 
 		gdU.showDialog();
