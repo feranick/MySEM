@@ -19,7 +19,7 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
 	public String currentVersion = "4.3";
-	public String url="https://github.com/feranick/MySEM/tree/master/source/";
+	public String url="http://github.com/feranick/MySEM/tree/master/source/";
 
 	public void run(String arg) {	
 		Cancel = false;
@@ -254,25 +254,21 @@ public class MySEM_Updater implements PlugIn {
 		boolean gte133 = version().compareTo("1.33u")>=0;
 		try {
 			URL url = new URL(address);
-            IJ.showStatus(address);
-            URLConnection uc = url.openConnection();
+			URLConnection uc = url.openConnection();
 			int len = uc.getContentLength();
 			IJ.showStatus("Downloading updated MySEM plugins");
 			InputStream in = uc.getInputStream();
 			data = new byte[len];
-            
 			int n = 0;
 			while (n < len) {
 				int count = in.read(data, n, len - n);
 				if (count<0)
 					throw new EOFException();
-                n += count;
-                IJ.showStatus(String.format ("%d", count));
+	   			 n += count;
 				if (gte133) IJ.showProgress(n, len);
 			}
 			in.close();
 		} catch (IOException e) {
-            //IJ.showStatus("ERROR");
             e.printStackTrace(System.out);
 			return null;
 		}
