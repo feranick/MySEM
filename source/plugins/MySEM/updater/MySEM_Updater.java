@@ -255,29 +255,27 @@ public class MySEM_Updater implements PlugIn {
 		try {
 			URL url = new URL(address);
             IJ.showStatus(address);
-	/*
             URLConnection uc = url.openConnection();
-    
 			int len = uc.getContentLength();
 			IJ.showStatus("Downloading updated MySEM plugins");
 			InputStream in = uc.getInputStream();
 			data = new byte[len];
+            
 			int n = 0;
 			while (n < len) {
 				int count = in.read(data, n, len - n);
-				if (count<0)
-					throw new EOFException();
-	   			 n += count;
+				//if (count<0)
+				//	throw new EOFException();
+                n += count;
+                IJ.showStatus(String.format ("%d", count));
 				if (gte133) IJ.showProgress(n, len);
 			}
 			in.close();
-    */
 		} catch (IOException e) {
-            IJ.showStatus("ERROR");
+            //IJ.showStatus("ERROR");
 			return null;
 		}
-		//return data;
-    return null;
+		return data;
 	}
 
 	void saveJar(File f, byte[] data) {
