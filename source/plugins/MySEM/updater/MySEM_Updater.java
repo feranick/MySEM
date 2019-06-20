@@ -264,7 +264,8 @@ public class MySEM_Updater implements PlugIn {
 			while (n < len) {
 				int count = in.read(data, n, len - n);
 				if (count<0)
-					throw new EOFException();
+                    IJ.error("Error", "test");
+					//throw new EOFException();
 	   			 n += count;
 				if (gte133) IJ.showProgress(n, len);
 			}
