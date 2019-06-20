@@ -18,7 +18,7 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean Cancel = false; // if true, it will stop the upgrade
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
-	public String currentVersion = "4.4";
+	public String currentVersion = "5.0";
     public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/plugins/MySEM/";
 
 	public void run(String arg) {	

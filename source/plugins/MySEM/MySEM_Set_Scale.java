@@ -33,8 +33,6 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 	private static int calIndex = (int) Prefs.get("MySEMSetScaleCalIndex.int", 0);
     private static boolean calcust = Prefs.get("MySEMSetScaleCalCust.boolean", false); // if true, use the custom calibration factor
 
-
-
     // nominal magnification settings of the microscope
 	private static double mag = Prefs.get("MySEMSetScaleMag.double", 5000);
     
@@ -53,7 +51,7 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 
     
     // units for the spacial calibrations given in xscales array above
-	private static String[] microscope =  {"FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Custom"};
+	private static String[] microscope =  {"Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Custom"};
 	private static String[] units =  {"nm", "um", "mm"};
 	private static String Units = "";
 
@@ -122,14 +120,9 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 			if (addScaleBar==true){
                                 IJ.run("Scale Bar...");
                         }
-
                 }
-        
         }
     
-    
-    
-
        public boolean doDialog() {
         GenericDialog gd = new GenericDialog("Calibrate SEM image...");
 		gd.addChoice("Microscope: ", microscope, microscope[calIndex]);
@@ -162,21 +155,23 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 			return false;}   
 
         if(calIndex==0) {
+                cal=247.88;}    // FEI XL30
+
+        if(calIndex==1) {
                 cal=242;}    // FEI XL30
         
-        if(calIndex==1) {
+        if(calIndex==2) {
                cal=249.1;}    // FEI Helios
            
-        if(calIndex==2)
+        if(calIndex==3)
 			{cal=113.556;}       // Zeiss Leo 1550
             
-        if(calIndex==3) {
+        if(calIndex==4) {
 			cal=201.78;}      // Agilent 8500
 		
         else
 		if(calIndex==4)
 			{cal=201.78;}     // NovelX MySEM
-
 
 		else
 		if(calIndex==5)
@@ -206,7 +201,6 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
             if(calcust==false)
                 {cal=mag*sbd*actualWidthCoeff/pixl;}
             
-                
             if(gd2.invalidNumber()==true)
 				{IJ.error("Not a valid number: calibration not performed");
 				return false;}
@@ -224,10 +218,6 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 		if(unitsIndex==2)
 		 	xscale=xscale/1E6;
         
-        
-    
-    
-
 		Prefs.set("MySEMSetScaleUnits.int", unitsIndex);
 		Prefs.set("MySEMSetScaleCalIndex.int", calIndex);
 		Prefs.set("MySEMSetScaleCal.double", cal);
@@ -254,10 +244,8 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
         cal=mag*sbd*actualWidthCoeff/pixl;
     
         IJ.showStatus("Calibration factor = "+IJ.d2s(cal,2));
-        
         return true;
     }
-    
 }
 
 
