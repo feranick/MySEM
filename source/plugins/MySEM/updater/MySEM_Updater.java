@@ -19,8 +19,8 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
 	public String currentVersion = "4.3";
-	//public String url="http://github.com/feranick/MySEM/tree/master/source/";
-    public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/";
+	public String url="https://github.com/feranick/MySEM/tree/master/source/";
+    //public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/";
 
 	public void run(String arg) {	
 		Cancel = false;
@@ -270,6 +270,7 @@ public class MySEM_Updater implements PlugIn {
 			}
 			in.close();
 		} catch (IOException e) {
+            IJ.showStatus("ERROR");
 			return null;
 		}
 		return data;
