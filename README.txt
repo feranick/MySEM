@@ -1,4 +1,4 @@
-MySEM plugins for ImageJ - v. 4.2 - 03/08/2017
+MySEM plugins for ImageJ - v. 4.4 - 06/20/2019
 ----------------------------------------------------
 
 Installation:
@@ -35,7 +35,7 @@ Contact:
 ---------
 
 Nicola Ferralis <feranick@hotmail.com> 
-http://electronsoftware.altervista.org/ij/mysem.html
+https://github.com/feranick/MySEM
 
 
 License:
