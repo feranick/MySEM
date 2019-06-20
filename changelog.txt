@@ -1,14 +1,11 @@
 v.5.1 (06/20/2019)
 
+Added support for Hitachi Regulus 8100
 Fixed retrieving of macros
 Fixed several issues with frames
+Added Find Maxima in Mainframe
 Added support for cropping Hitachi Regulus 8100 images
 Minor bug fixes
-
------------------------------- 
-v.5.0 (06/20/2019)
-
-Added support for Hitachi Regulus 8100
 
 ------------------------------ 
 v.4.4 (06/20/2019)

@@ -88,7 +88,7 @@ class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
         button3.addActionListener(this);
 	    panel2.add(button3);
 
-	    button4 = new Button(" Show Info ");
+	    button4 = new Button(" Find Maxima ");
         button4.addActionListener(this);
 	    panel2.add(button4);
 
@@ -106,14 +106,18 @@ class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
         button10 = new Button(" Undo ");
         button10.addActionListener(this);
         panel3.add(button10);
-
-        button11 = new Button(" Duplicate ");
+        
+        button11 = new Button(" Show Info ");
         button11.addActionListener(this);
-	    panel3.add(button11);
+        panel3.add(button11);
 
-        button12 = new Button(" Filters ");
+        button12 = new Button(" Duplicate ");
         button12.addActionListener(this);
 	    panel3.add(button12);
+
+        button13 = new Button(" Filters ");
+        button13.addActionListener(this);
+	    panel3.add(button13);
 
 
         add(panel);
@@ -140,7 +144,7 @@ class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
 		    {IJ.run("Measure");}
 	
 	    if(b==button4)
-		    {IJ.run("Show Info...");}
+		    {IJ.run("Find Maxima...");}
 
 	    if(b==button5)
 		    {IJ.run("Plot Profile");}
@@ -162,11 +166,14 @@ class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
 
         if(b==button10)
 		    {IJ.run("Undo");}
-
-	    if(b==button11)
-		    {IJ.run("Duplicate...",imp.getTitle());}
+      
+        if(b==button11)
+            {IJ.run("Show Info...");}
 
 	    if(b==button12)
+		    {IJ.run("Duplicate...",imp.getTitle());}
+
+	    if(b==button13)
 		    {IJ.run("MySEM FiltersFrame");}
 
 
