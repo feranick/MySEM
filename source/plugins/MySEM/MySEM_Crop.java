@@ -4,7 +4,7 @@
 // http://www.gnu.org/licenses/gpl-3.0.txt
 
 /* DESCRIPTION & CUSTOMIZATION INSTRUCTIONS
-        This plugin lets you crop the image to remove the standard NovelX information bar at the bottom. Optionally, it allows you to add a custom scale bar (this requires a previous calibration). 
+        This plugin lets you crop the image to remove the standard SEM information bar at the bottom. Optionally, it allows you to add a custom scale bar (this requires a previous calibration).
 **/
 
 import ij.*;
@@ -39,6 +39,10 @@ public class MySEM_Crop implements  PlugInFilter {
 			{frameHeight = frameHeight+10;}	
         else if(ip.getWidth()==712)
             {frameHeight = (int) (frameHeight*0.95);}   //FEI XL30
+        else if(ip.getWidth()==1280)
+            {frameHeight = (int) (frameHeight*0.99);}   //Regulus 8100
+        else if(ip.getWidth()==640)
+            {frameHeight = (int) (frameHeight*0.99);}   //Regulus 8100
             
         else {IJ.error("Cannot apply cropping to this image");
                 return;}
