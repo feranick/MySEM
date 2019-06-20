@@ -20,7 +20,7 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean Uninstall = false; // false for upgrade, true for first run
 	public String currentVersion = "4.3";
 	//public String url="https://github.com/feranick/MySEM/raw/master/source/";
-    public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/";
+    public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/plugins/MySEM/";
 
 	public void run(String arg) {	
 		Cancel = false;
