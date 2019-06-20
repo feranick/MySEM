@@ -18,8 +18,8 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean Cancel = false; // if true, it will stop the upgrade
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
-	public String currentVersion = "5.0";
-    public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/plugins/MySEM/";
+	public String currentVersion = "5.1";
+    public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/";
 
 	public void run(String arg) {	
 		Cancel = false;
@@ -53,33 +53,33 @@ public class MySEM_Updater implements PlugIn {
 
 			//GetFile("plugins/MySEM/MySEM_Add_Comment.class", url+"MySEM_Add_Comment.class");
 			//GetFile("plugins/MySEM/MySEM_Add_Comment.java", url+"MySEM_Add_Comment.java");
-			GetFile("plugins/MySEM/MySEM_Crop.class", url+"MySEM_Crop.class");
-			GetFile("plugins/MySEM/MySEM_Crop.java", url+"MySEM_Crop.java");
-			GetFile("plugins/MySEM/MySEM_Measure.class", url+"MySEM_Measure.class");
-			GetFile("plugins/MySEM/MySEM_Measure.java", url+"MySEM_Measure.java");
-			GetFile("plugins/MySEM/MySEM_Set_Scale.class", url+"MySEM_Set_Scale.class");
-			GetFile("plugins/MySEM/MySEM_Set_Scale.java", url+"MySEM_Set_Scale.java");
-			GetFile("plugins/MySEM/MySEM_Filters.class", url+"MySEM_Filters.class");		
-			GetFile("plugins/MySEM/MySEM_Filters.java", url+"MySEM_Filters.java");	
-			GetFile("plugins/MySEM/MySEM_Line_Correction.java", url+"MySEM_Line_Correction.java");	
-			GetFile("plugins/MySEM/MySEM_Line_Correction.class", url+"MySEM_Line_Correction.class");
-			GetFile("plugins/MySEM/MySEM_MainFrame.class", url+"MySEM_MainFrame.class");
-			GetFile("plugins/MySEM/MySEM_MainFrame.java", url+"MySEM_MainFrame.java");
-			GetFile("plugins/MySEM/MySEM_MainFrame$MySEM_MainFrame_Panel.class", url+"MySEM_MainFrame$MySEM_MainFrame_Panel.class");
-			GetFile("plugins/MySEM/MySEM_FiltersFrame.class", url+"MySEM_FiltersFrame.class");
-			GetFile("plugins/MySEM/MySEM_FiltersFrame.java", url+"MySEM_FiltersFrame.java");
-			GetFile("plugins/MySEM/MySEM_FiltersFrame$MySEM_FiltersFrame_Panel.class", url+"MySEM_FiltersFrame$MySEM_FiltersFrame_Panel.class");
-			GetFile("plugins/MySEM/MySEM_Select_Image.class", url+"MySEM_Select_Image.class");
-			GetFile("plugins/MySEM/MySEM_Select_Image.java", url+"MySEM_Select_Image.java");
+			GetFile("plugins/MySEM/MySEM_Crop.class", url+"plugins/MySEM/MySEM_Crop.class");
+			GetFile("plugins/MySEM/MySEM_Crop.java", url+"plugins/MySEM/MySEM_Crop.java");
+			GetFile("plugins/MySEM/MySEM_Measure.class", url+"plugins/MySEM/MySEM_Measure.class");
+			GetFile("plugins/MySEM/MySEM_Measure.java", url+"plugins/MySEM/MySEM_Measure.java");
+			GetFile("plugins/MySEM/MySEM_Set_Scale.class", url+"plugins/MySEM/MySEM_Set_Scale.class");
+			GetFile("plugins/MySEM/MySEM_Set_Scale.java", url+"plugins/MySEM/MySEM_Set_Scale.java");
+			GetFile("plugins/MySEM/MySEM_Filters.class", url+"plugins/MySEM/MySEM_Filters.class");
+			GetFile("plugins/MySEM/MySEM_Filters.java", url+"plugins/MySEM/MySEM_Filters.java");
+			GetFile("plugins/MySEM/MySEM_Line_Correction.java", url+"plugins/MySEM/MySEM_Line_Correction.java");
+			GetFile("plugins/MySEM/MySEM_Line_Correction.class", url+"plugins/MySEM/MySEM_Line_Correction.class");
+			GetFile("plugins/MySEM/MySEM_MainFrame.class", url+"plugins/MySEM/MySEM_MainFrame.class");
+			GetFile("plugins/MySEM/MySEM_MainFrame.java", url+"plugins/MySEM/MySEM_MainFrame.java");
+			GetFile("plugins/MySEM/MySEM_MainFrame$MySEM_MainFrame_Panel.class", url+"plugins/MySEM/MySEM_MainFrame$MySEM_MainFrame_Panel.class");
+			GetFile("plugins/MySEM/MySEM_FiltersFrame.class", url+"plugins/MySEM/MySEM_FiltersFrame.class");
+			GetFile("plugins/MySEM/MySEM_FiltersFrame.java", url+"plugins/MySEM/MySEM_FiltersFrame.java");
+			GetFile("plugins/MySEM/MySEM_FiltersFrame$MySEM_FiltersFrame_Panel.class", url+"plugins/MySEM/MySEM_FiltersFrame$MySEM_FiltersFrame_Panel.class");
+			GetFile("plugins/MySEM/MySEM_Select_Image.class", url+"plugins/MySEM/MySEM_Select_Image.class");
+			GetFile("plugins/MySEM/MySEM_Select_Image.java", url+"plugins/MySEM/MySEM_Select_Image.java");
 
 
-			GetFile("macros/toolsets/MySEM.txt", url+"MySEM.txt");
-			GetFile("macros/toolsets/FFT.txt", url+"FFT.txt");
-			GetFile("plugins/Macros/Remove_Streaks.txt", url+"Remove_Streaks.txt");
+			GetFile("macros/toolsets/MySEM.txt", url+"macros/toolsets/MySEM.txt");
+			GetFile("macros/toolsets/FFT.txt", url+"macros/toolsets/FFT.txt");
+			GetFile("plugins/Macros/Remove_Streaks.txt", url+"plugins/Macros/Remove_Streaks.txt");
 			
 		
 			if(Startup==true)		
-				{GetFile("macros/StartupMacros.txt", url+"StartupMacros.txt");}
+				{GetFile("macros/StartupMacros.txt", url+"macros/StartupMacros.txt");}
 			}
 		else
 			{File f1 = new File("plugins/MySEM/MySEM_Updater.jar");
