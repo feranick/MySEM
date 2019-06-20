@@ -1,6 +1,8 @@
 v.5.1 (06/20/2019)
 
 Fixed retrieving of macros
+Fixed several issues with frames
+Added support for cropping Hitachi Regulus 8100 images
 Minor bug fixes
 
 ------------------------------ 

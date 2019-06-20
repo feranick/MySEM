@@ -37,13 +37,12 @@ public class MySEM_MainFrame implements  PlugInFilter {
        		    ImageCanvas cc = new ImageCanvas(imp);
        		    new MySEM_MainFrame_Panel(imp, cc);               
 	
-		
 }
 
 
 class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
     
-        private Button button1, button2, button3, button4, button5, button6, button7, button8, button9; 
+    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
 	private Button button10, button11, button12, button13, button14;
 	
 	String units;
@@ -56,21 +55,22 @@ class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
     
         void addPanel() {
 	    Panel panel = new Panel();
-            panel.setLayout(new GridLayout(1, 4));
-            button1 = new Button(" Set Scale ");
-            button1.addActionListener(this);
+        panel.setLayout(new GridLayout(1, 4));
+        
+        button1 = new Button(" Set Scale ");
+        button1.addActionListener(this);
 	    panel.add(button1);
 
 	    button8 = new Button(" Z-Calibration ");
-            button8.addActionListener(this);
+        button8.addActionListener(this);
 	    panel.add(button8);
 
 	    button6 = new Button(" Crop Image ");
-            button6.addActionListener(this);
+        button6.addActionListener(this);
 	    panel.add(button6);
 
 	    button14 = new Button(" Select Image ");
-            button14.addActionListener(this);
+        button14.addActionListener(this);
 	    panel.add(button14);
 
         //button7 = new Button(" Add Comment ");
@@ -78,102 +78,103 @@ class MySEM_MainFrame_Panel extends ImageWindow implements ActionListener {
 	    //panel.add(button7);
 
 	    Panel panel2 = new Panel();
-            panel.setLayout(new GridLayout(1, 4));
+        panel.setLayout(new GridLayout(1, 4));
 
 	    button2 = new Button(" Draw and Measure ");
-            button2.addActionListener(this);
-            panel2.add(button2);
+        button2.addActionListener(this);
+        panel2.add(button2);
 
 	    button3 = new Button(" Statistics ");
-            button3.addActionListener(this);
+        button3.addActionListener(this);
 	    panel2.add(button3);
 
 	    button4 = new Button(" Dynamic Profiler ");
-            button4.addActionListener(this);
+        button4.addActionListener(this);
 	    panel2.add(button4);
 
 	    button5 = new Button(" Profile ");
-            button5.addActionListener(this);
+        button5.addActionListener(this);
 	    panel2.add(button5);
 
 	    Panel panel3 = new Panel();
-            panel3.setLayout(new GridLayout(1, 4));
+        panel3.setLayout(new GridLayout(1, 4));
 
 	    button10 = new Button(" Undo ");
-            button10.addActionListener(this);
+        button10.addActionListener(this);
 	    panel3.add(button10);
 
 	    button9 = new Button(" ROI ");
-            button9.addActionListener(this);
+        button9.addActionListener(this);
 	    panel3.add(button9);
 
-       	    button11 = new Button(" Show Info ");
-            button11.addActionListener(this);
+        button11 = new Button(" Show Info ");
+        button11.addActionListener(this);
 	    panel3.add(button11);
 
-       	    button12 = new Button(" Duplicate ");
-            button12.addActionListener(this);
+        button12 = new Button(" Duplicate ");
+        button12.addActionListener(this);
 	    panel3.add(button12);
 
-       	    button13 = new Button(" Filters ");
-            button13.addActionListener(this);
+        button13 = new Button(" Filters ");
+        button13.addActionListener(this);
 	    panel3.add(button13);	
 
 
-            add(panel);
+        add(panel);
 	    add(panel2);
 	    add(panel3);
-            pack();
-       Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-            Point loc = getLocation();
-            Dimension size = getSize();
-            if (loc.y+size.height>screen.height)
-                getCanvas().zoomOut(0, 0);
+        pack();
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        Point loc = getLocation();
+        Dimension size = getSize();
+        if (loc.y+size.height>screen.height)
+            getCanvas().zoomOut(0, 0);
          }
       
-        public void actionPerformed(ActionEvent e) {
-            Object b = e.getSource();
+    public void actionPerformed(ActionEvent e) {
+        Object b = e.getSource();
+            
         if (b==button1) {
-		IJ.run("MySEM Set Scale");} 
+		    IJ.run("MySEM Set Scale");}
 
-	if(b==button2)
-		{IJ.run("MySEM Measure");}
+	    if(b==button2)
+		    {IJ.run("MySEM Measure");}
 
-	if(b==button3)
-		{IJ.run("Measure");}
+	    if(b==button3)
+		    {IJ.run("Measure");}
 	
-	if(b==button4)
-		{IJ.run("Dynamic Profiler");}
+	    if(b==button4)
+		    {IJ.run("Dynamic Profiler");}
 
-	if(b==button5)
-		{IJ.run("Plot Profile");}
+	    if(b==button5)
+		    {IJ.run("Plot Profile");}
 
-	if(b==button6)
-		{IJ.run("MySEM Crop");}
+	    if(b==button6)
+		    {IJ.run("MySEM Crop");}
 
-	if(b==button14)
-		{IJ.run("MySEM Select Image");}
+	    if(b==button14)
+		    {IJ.run("MySEM Select Image");}
 
-	if(b==button7)
-		{IJ.run("MySEM Add Comment");}
+	    if(b==button7)
+		    {IJ.run("MySEM Add Comment");}
 
-	if(b==button8)
-		{IJ.run("Calibrate...");}
+	    if(b==button8)
+		    {IJ.run("Calibrate...");}
 
-	if(b==button9)
-		{IJ.run("ROI Manager...");}
+	    if(b==button9)
+		    {IJ.run("ROI Manager...");}
 
-    	if(b==button10)
-		{IJ.run("Undo");}
+        if(b==button10)
+		    {IJ.run("Undo");}
 
-	if(b==button11)
-		{IJ.run("Show Info...");}
+	    if(b==button11)
+		    {IJ.run("Show Info...");}
 
-	if(b==button12)
-		{IJ.run("Duplicate...",imp.getTitle());}
+	    if(b==button12)
+		    {IJ.run("Duplicate...",imp.getTitle());}
 
-	if(b==button13)
-		{IJ.run("MySEM FiltersFrame");}
+	    if(b==button13)
+		    {IJ.run("MySEM FiltersFrame");}
 
 
         }
