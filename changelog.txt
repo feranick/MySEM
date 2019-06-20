@@ -1,3 +1,10 @@
+v.4.4 (06/20/2019)
+
+Updated GitHub URLs
+Minor bug fixes
+
+------------------------------ 
+
 v.4.3 (10/26/2017)
 
 Bug fixes
