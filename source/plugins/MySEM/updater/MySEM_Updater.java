@@ -202,7 +202,7 @@ public class MySEM_Updater implements PlugIn {
 	void GetFile(String local, String url) {
 		File file = new File(Prefs.getHomeDir() + File.separator + local);
 		byte[] jar = getJar(url);
-		//if (jar==null) return;
+		if (jar==null) return;
 		saveJar(file, jar);
 		}
 
@@ -273,6 +273,7 @@ public class MySEM_Updater implements PlugIn {
 			in.close();
 		} catch (IOException e) {
             //IJ.showStatus("ERROR");
+            e.printStackTrace(System.out);
 			return null;
 		}
 		return data;
