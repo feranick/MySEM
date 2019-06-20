@@ -19,7 +19,7 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
 	public String currentVersion = "4.3";
-	public String url="http://github.com/feranick/MySEM/tree/master/source/";
+	public String url="https://github.com/feranick/MySEM/tree/master/source/";
 
 	public void run(String arg) {	
 		Cancel = false;
@@ -202,7 +202,7 @@ public class MySEM_Updater implements PlugIn {
 	void GetFile(String local, String url) {
 		File file = new File(Prefs.getHomeDir() + File.separator + local);
 		byte[] jar = getJar(url);
-		if (jar==null) return;
+		//if (jar==null) return;
 		saveJar(file, jar);
 		}
 
@@ -267,7 +267,7 @@ public class MySEM_Updater implements PlugIn {
 				//if (count<0)
 				//	throw new EOFException();
                 n += count;
-                //IJ.showStatus(String.format ("%d", count));
+                IJ.showStatus(String.format ("%d", count));
 				if (gte133) IJ.showProgress(n, len);
 			}
 			in.close();
