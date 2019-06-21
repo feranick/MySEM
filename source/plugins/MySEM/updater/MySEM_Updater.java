@@ -75,7 +75,7 @@ public class MySEM_Updater implements PlugIn {
 
 			GetFile("macros/toolsets/MySEM.txt", url+"macros/toolsets/MySEM.txt");
 			GetFile("macros/toolsets/FFT.txt", url+"macros/toolsets/FFT.txt");
-			GetFile("plugins/Macros/Remove_Streaks.txt", url+"plugins/Macros/Remove_Streaks.txt");
+			GetFile("macros/Remove_Streaks.txt", url+"plugins/Macros/Remove_Streaks.txt");
 			
 		
 			if(Startup==true)		
@@ -108,7 +108,7 @@ public class MySEM_Updater implements PlugIn {
 			File f7 = new File("macros/toolsets/MySEM.txt");
 			File f8 = new File("macros/toolsets/FFT.txt");
 			File f0 = new File("macros/StartupMacros.txt");	
-			File f9 = new File("plugins/Macros/Remove_Streaks.txt");	
+			File f9 = new File("macros/Remove_Streaks.txt");	
 		
 			f1.delete();
 			f2.delete();
