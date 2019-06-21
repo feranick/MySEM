@@ -135,6 +135,10 @@ macro "Add Scale Bar [F7]" {
 	run("Set Scale...");
 	run("Scale Bar...");}
 
+macro "-" {} //menu divider
+
+macro "Remove Streaks" {
+	run("Remove Streaks");}
 
 macro "-" {} //menu divider
 

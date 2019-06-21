@@ -18,7 +18,7 @@ public class MySEM_Updater implements PlugIn {
 	private static boolean Cancel = false; // if true, it will stop the upgrade
 	private static boolean FirstRun = false; // false for upgrade, true for first run
 	private static boolean Uninstall = false; // false for upgrade, true for first run
-	public String currentVersion = "5.1";
+	public String currentVersion = "5.2";
     public String url="https://raw.githubusercontent.com/feranick/MySEM/master/source/";
 
 	public void run(String arg) {	
@@ -75,7 +75,7 @@ public class MySEM_Updater implements PlugIn {
 
 			GetFile("macros/toolsets/MySEM.txt", url+"macros/toolsets/MySEM.txt");
 			GetFile("macros/toolsets/FFT.txt", url+"macros/toolsets/FFT.txt");
-			GetFile("macros/Remove_Streaks.txt", url+"plugins/Macros/Remove_Streaks.txt");
+			GetFile("plugins/MySEM/Remove_Streaks.txt", url+"plugins/MySEM/Remove_Streaks.txt");
 			
 		
 			if(Startup==true)		
@@ -108,7 +108,7 @@ public class MySEM_Updater implements PlugIn {
 			File f7 = new File("macros/toolsets/MySEM.txt");
 			File f8 = new File("macros/toolsets/FFT.txt");
 			File f0 = new File("macros/StartupMacros.txt");	
-			File f9 = new File("macros/Remove_Streaks.txt");	
+			File f9 = new File("plugins/MySEM/Remove_Streaks.txt");
 		
 			f1.delete();
 			f2.delete();
