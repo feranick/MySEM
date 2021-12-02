@@ -169,12 +169,11 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
         if(calIndex==4) {
 			cal=201.78;}      // Agilent 8500
 		
-        else
-		if(calIndex==4)
+		if(calIndex==5)
 			{cal=201.78;}     // NovelX MySEM
 
 		else
-		if(calIndex==5)
+		if(calIndex==6)
 			{
             GenericDialog gd2 = new GenericDialog("Custom microscope...");
             
