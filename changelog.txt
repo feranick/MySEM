@@ -1,3 +1,8 @@
+v.5.3 (12/12/2021)
+
+Fixed bug preventing setting scale on custom microscopes
+
+------------------------------ 
 v.5.2 (06/21/2019)
 
 Fixed Macro: Remove Streaks
