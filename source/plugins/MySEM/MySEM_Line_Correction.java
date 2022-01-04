@@ -1,4 +1,4 @@
-// 2009 - Nicola Ferralis <feranick@hotmail.com>
+// 2009-2022 - Nicola Ferralis <feranick@hotmail.com>
 
 // Released under Gnu Public License (GPL) v. 3.0.
 // http://www.gnu.org/licenses/gpl-3.0.txt
