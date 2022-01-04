@@ -1,4 +1,4 @@
-// 2008-2013 - Nicola Ferralis <feranick@hotmail.com>
+// 2008-2022 - Nicola Ferralis <feranick@hotmail.com>
 
 // Released under Gnu Public License (GPL) v. 3.0.
 // http://www.gnu.org/licenses/gpl-3.0.txt
@@ -36,8 +36,11 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
     // nominal magnification settings of the microscope
 	private static double mag = Prefs.get("MySEMSetScaleMag.double", 5000);
     
-    // nominal size scale bar (in um) 
+    // nominal size scale bar
     private static double sbd = Prefs.get("MySEMSetScaleSbd.double", 1.00);
+    
+    // Additional correction factor (if needed)
+    private static double addCF = Prefs.get("MySEMSetScaleAddCF.double", 1.00);
 	
 	// calibration factor in formula: [Scale bar (in nm)]*(Mag)/(2000*cal) = #pixels for a scalebar=1000 nm    	
 	private static double cal = Prefs.get("MySEMSetScaleCal.double", 100.89);
@@ -51,7 +54,7 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 
     
     // units for the spacial calibrations given in xscales array above
-	private static String[] microscope =  {"Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Custom"};
+	private static String[] microscope =  {"Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "ORNL STEM", "Custom"};
 	private static String[] units =  {"nm", "um", "mm"};
 	private static String Units = "";
 
@@ -172,8 +175,44 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 		if(calIndex==5)
 			{cal=201.78;}     // NovelX MySEM
 
+        if(calIndex==6)
+			{
+            GenericDialog gd2 = new GenericDialog("ORNL STEM");
+            
+            //gd2.addNumericField(" Magnification: ", mag, 0);
+            //gd2.addNumericField("Calibration factor [C]: ", cal, 2);
+            gd2.addNumericField(" Width in pixels of the image: ", pixl, 0);
+            gd2.addNumericField(" Nominal distance for the full width of the image [nm]: ", sbd, 3);
+            gd2.addNumericField(" Additional correction factor (if needed): ", addCF, 3);
+                
+            gd2.addCheckbox(" Use calibration factor:", calcust);
+            gd2.addNumericField(" Calibration factor: ", cal, 4);
+            gd2.addDialogListener(this);
+                
+            gd2.showDialog();
+        
+            //mag = gd2.getNextNumber();
+			pixl = (int) gd2.getNextNumber();
+            sbd = gd2.getNextNumber();
+            addCF = gd2.getNextNumber();
+            calcust =  gd2.getNextBoolean();
+            
+            if(calcust==true)
+                {cal = gd2.getNextNumber();}
+
+            if(calcust==false)
+                {cal=(sbd/pixl)/addCF;}
+            
+            if(gd2.invalidNumber()==true)
+				{IJ.error("Not a valid number: calibration not performed");
+				return false;}
+            if (gd2.wasCanceled()) {
+				return false;}
+                
+			}
+
 		else
-		if(calIndex==6)
+		if(calIndex==7)
 			{
             GenericDialog gd2 = new GenericDialog("Custom microscope...");
             
@@ -228,7 +267,8 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
         Prefs.set("MySEMSetScaleCalCust.boolean", calcust);
 		Prefs.set("MySEMSetScaleFilters.boolean", filters);
         Prefs.set("MySEMSetScalePixl.int", pixl);
-        Prefs.set("MySEMSetScaleSbd.int", sbd);
+        Prefs.set("MySEMSetScaleSbd.double", sbd);
+        Prefs.set("MySEMSetScaleAddCF.double", addCF);
            
 		return true;
         }
