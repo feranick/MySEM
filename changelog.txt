@@ -1,3 +1,8 @@
+v.5.6 (02/03/2022)
+
+Improved FFT toolset to include options and pencil
+
+------------------------------
 v.5.5 (01/06/2022)
 
 Bug fixes on setting scale for ORNL STEM

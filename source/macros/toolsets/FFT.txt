@@ -59,6 +59,17 @@ macro "FFT high frequency noise filter [F5]" {
 	FFThighfreqnoisecanc();
 	}
 
+macro "Tool-6 - " {}  // leave slot between text tool and magnifying glass unused
+
+macro "Fast Fourier Transform (FFT) Options Action Tool-C037T0b11FT8b09T" {
+	run("FFT Options...");
+	}
+
+macro "Tool-7 - " {}  // leave slot between text tool and magnifying glass unused
+
+macro "Pencil Built-in Tool" {}
+
+
 function FFThighfreqnoisecanc() {
 
 	run("Copy");
