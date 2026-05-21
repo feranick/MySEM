@@ -54,7 +54,7 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 
     
     // units for the spacial calibrations given in xscales array above
-	private static String[] microscope =  {"Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "ORNL STEM", "Custom"};
+	private static String[] microscope =  {"Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Phenom XL", "ORNL STEM", "Custom"};
 	private static String[] units =  {"nm", "um", "mm"};
 	private static String Units = "";
 
@@ -103,13 +103,15 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 				int frameHeight = (int) (ip.getHeight()*0.925);
                 
                 if(ip.getWidth()==512)
-                {frameHeight = frameHeight+1;}
+                    {frameHeight = frameHeight+1;}
                 else if(ip.getWidth()==1024)
-                {frameHeight = frameHeight+5;}
+                    {frameHeight = frameHeight+5;}
                 else if(ip.getWidth()==2048)
-                {frameHeight = frameHeight+10;}
+                    {frameHeight = frameHeight+10;}
+                else if(ip.getWidth()==3840)
+                    {frameHeight = frameHeight+35;}
                 else if(ip.getWidth()==712)
-                {frameHeight = (int) (frameHeight*0.95);}   //FEI XL30
+                    {frameHeight = (int) (frameHeight*0.95);}   //FEI XL30
                 else {IJ.error("Cannot apply cropping to this image");
                     return;}
                
@@ -174,8 +176,11 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 		
 		if(calIndex==5)
 			{cal=201.78;}     // NovelX MySEM
-
+        
         if(calIndex==6)
+			{cal=1368.75;}     // Phenom XL
+
+        if(calIndex==7)
 			{
             GenericDialog gd2 = new GenericDialog("ORNL STEM");
             
@@ -212,7 +217,7 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 			}
 
 		else
-		if(calIndex==7)
+		if(calIndex==8)
 			{
             GenericDialog gd2 = new GenericDialog("Custom microscope...");
             

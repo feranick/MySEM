@@ -1,3 +1,8 @@
+v.5.7 (05/21/2026)
+
+Added support for Phenom XL
+
+------------------------------
 v.5.6 (02/03/2022)
 
 Improved FFT toolset to include options and pencil
