@@ -54,22 +54,22 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 
     
     // units for the spacial calibrations given in xscales array above
-	private static String[] microscope =  {"Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "Phenom XL", "ORNL STEM", "Custom"};
+	private static String[] microscope =  {"Phenom XL", "Hitachi Regulus 8100", "FEI/Philips XL30","FEI Helios 600 Nanolab", "Zeiss LEO 1550", "Agilent 8500 FE-SEM", "NovelX MySEM", "ORNL STEM", "Custom"};
 	private static String[] units =  {"nm", "um", "mm"};
 	private static String Units = "";
 
 
-        public int setup(String arg, ImagePlus imp) {
-                this.imp = imp;
-                return DOES_ALL;
+    public int setup(String arg, ImagePlus imp) {
+            this.imp = imp;
+            return DOES_ALL;
         }
 
-        public void run(ImageProcessor ip) {
+    public void run(ImageProcessor ip) {
             
-            imWidth=ip.getWidth();            
+        imWidth=ip.getWidth();
             
-                if (doDialog()) {
-			 Calibration oc = imp.getCalibration().copy();
+            if (doDialog()) {
+                Calibration oc = imp.getCalibration().copy();
                         oc.setUnit(Units);
                         oc.pixelWidth=xscale;
                         oc.pixelHeight=oc.pixelWidth;
@@ -98,22 +98,43 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 				{IJ.run("MySEM Filters");
 				filters = false;}
 
-
 			if (remBar==true){
-				int frameHeight = (int) (ip.getHeight()*0.925);
+                int frameHeight = (int) ip.getHeight();
+                if(calIndex == 0)
+                    {frameHeight = (int) (ip.getHeight()*0.941);}
+                else
+                    {frameHeight = (int) (ip.getHeight()*0.925);
+                    if(ip.getWidth()==512)
+                        {frameHeight = frameHeight+1;}
+                    else if(ip.getWidth()==1024)
+                        {frameHeight = frameHeight+5;}
+                    else if(ip.getWidth()==2048)
+                        {frameHeight = frameHeight+10;}
+                    else if(ip.getWidth()==712)
+                        {frameHeight = (int) (frameHeight*0.95);}   //FEI XL30
+                    else {IJ.error("Cannot apply cropping to this image");
+                        return;}
+                    }
                 
+                
+                /*
+                // Old
                 if(ip.getWidth()==512)
                     {frameHeight = frameHeight+1;}
                 else if(ip.getWidth()==1024)
                     {frameHeight = frameHeight+5;}
                 else if(ip.getWidth()==2048)
                     {frameHeight = frameHeight+10;}
-                else if(ip.getWidth()==3840)
-                    {frameHeight = frameHeight+35;}
+                else if(ip.getWidth()==1920 || ip.getWidth()==3840)
+                    //{frameHeight = frameHeight+35;}
+                    {frameHeight = (int) (ip.getHeight()*0.941);}
                 else if(ip.getWidth()==712)
                     {frameHeight = (int) (frameHeight*0.95);}   //FEI XL30
                 else {IJ.error("Cannot apply cropping to this image");
                     return;}
+                    
+                */
+                
                
                 // Eventually add ability to customize settings per microscope
 
@@ -159,26 +180,26 @@ public class MySEM_Set_Scale implements  PlugInFilter,DialogListener {
 			{IJ.error("Not a valid number: calibration not performed");
 			return false;}   
 
-        if(calIndex==0) {
-                cal=247.88;}    // FEI XL30
+        if(calIndex==0)
+			{cal=1368.75;}     // Phenom XL
+   
+        if(calIndex==1)
+            {cal=247.88;}    // Hitachi Regulus 8100
 
-        if(calIndex==1) {
-                cal=242;}    // FEI XL30
+        if(calIndex==2)
+            {cal=242.0;}    // FEI XL30
         
-        if(calIndex==2) {
-               cal=249.1;}    // FEI Helios
-           
         if(calIndex==3)
+            {cal=249.1;}    // FEI Helios
+           
+        if(calIndex==4)
 			{cal=113.556;}       // Zeiss Leo 1550
             
-        if(calIndex==4) {
+        if(calIndex==5) {
 			cal=201.78;}      // Agilent 8500
 		
-		if(calIndex==5)
+		if(calIndex==6)
 			{cal=201.78;}     // NovelX MySEM
-        
-        if(calIndex==6)
-			{cal=1368.75;}     // Phenom XL
 
         if(calIndex==7)
 			{
