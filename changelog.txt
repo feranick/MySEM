@@ -1,3 +1,7 @@
+v.6.0 (05/29/2026)
+
+Extensive bug fixing. See git for details. 
+------------------------------
 v.5.8 (05/21/2026)
 
 Improved support for Phenom XL, especially in cropping bottom bar
