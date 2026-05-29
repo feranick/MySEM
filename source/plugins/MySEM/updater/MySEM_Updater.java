@@ -59,7 +59,6 @@ public class MySEM_Updater implements PlugIn {
                 }
             }
 
-            // Standardized targeted file down-loader map
             GetFile(pluginsPath + "MySEM/MySEM_Updater.jar", url + "MySEM_Updater.jar");    
             GetFile(pluginsPath + "MySEM/MySEM_Crop.class", url + "plugins/MySEM/MySEM_Crop.class");
             GetFile(pluginsPath + "MySEM/MySEM_Crop.java", url + "plugins/MySEM/MySEM_Crop.java");
@@ -123,7 +122,6 @@ public class MySEM_Updater implements PlugIn {
             IJ.showMessage("MySEM Uninstalled", "All components removed successfully.\nPlease restart ImageJ.");
         }
         
-        // Clean close interaction sequence
         if (IJ.getInstance() != null) {
             IJ.getInstance().quit();
         }
@@ -170,6 +168,7 @@ public class MySEM_Updater implements PlugIn {
         }
     }
     
+    // Fix: Reverted to standard try-catch-finally for Java 6 compatibility
     private void GetFile(String localPath, String urlAddress) {
         byte[] jarData = getJar(urlAddress);
         if (jarData == null) return;
@@ -177,13 +176,19 @@ public class MySEM_Updater implements PlugIn {
         File targetFile = new File(localPath);
         File parentDir = targetFile.getParentFile();
         if (parentDir != null && !parentDir.exists()) {
-            parentDir.mkdirs(); // Generate child folder structures safely
+            parentDir.mkdirs(); 
         }
         
-        try (FileOutputStream out = new FileOutputStream(targetFile)) {
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(targetFile);
             out.write(jarData, 0, jarData.length);
         } catch (IOException e) {
             IJ.log("Failed to write file locally: " + localPath + " - " + e.getMessage());
+        } finally {
+            if (out != null) {
+                try { out.close(); } catch (IOException ignored) {}
+            }
         }
     }
 
@@ -209,43 +214,61 @@ public class MySEM_Updater implements PlugIn {
         return notes.trim();
     }
 
+    // Fix: Reverted to standard try-catch-finally for Java 6 compatibility
     private String openUrlAsString(String address, int maxLines) {
         StringBuilder sb = new StringBuilder();
+        InputStream in = null;
+        BufferedReader br = null;
         try {
             URL urlObj = new URL(address);
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(urlObj.openStream()))) {
-                int count = 0;
-                String line;
-                while ((line = br.readLine()) != null && count++ < maxLines) {
-                    sb.append(line).append("\n");
-                }
+            in = urlObj.openStream();
+            br = new BufferedReader(new InputStreamReader(in));
+            int count = 0;
+            String line;
+            while ((line = br.readLine()) != null && count++ < maxLines) {
+                sb.append(line).append("\n");
             }
             return sb.toString();
         } catch (IOException e) {
             return null;
+        } finally {
+            if (br != null) {
+                try { br.close(); } catch (IOException ignored) {}
+            }
+            if (in != null) {
+                try { in.close(); } catch (IOException ignored) {}
+            }
         }
     }
 
+    // Fix: Reverted to standard try-catch-finally for Java 6 compatibility
     private byte[] getJar(String address) {
-        // Robust byte collector handles dynamic sizes (no fixed dependency on Content-Length headers)
+        InputStream in = null;
+        ByteArrayOutputStream out = null;
         try {
             URL urlObj = new URL(address);
             URLConnection uc = urlObj.openConnection();
             IJ.showStatus("Downloading updated MySEM plugins...");
             
-            try (InputStream in = uc.getInputStream(); 
-                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-                
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                while ((bytesRead = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
-                }
-                return out.toByteArray();
+            in = uc.getInputStream();
+            out = new ByteArrayOutputStream();
+            
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
             }
+            return out.toByteArray();
         } catch (IOException e) {
             IJ.log("Download failed: " + address + " - " + e.getMessage());
             return null;
+        } finally {
+            if (out != null) {
+                try { out.close(); } catch (IOException ignored) {}
+            }
+            if (in != null) {
+                try { in.close(); } catch (IOException ignored) {}
+            }
         }
     }
 
